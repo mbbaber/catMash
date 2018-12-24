@@ -6,6 +6,7 @@ import { MainVoteComponent } from './main-vote/main-vote.component';
 import { MainScoreComponent } from './main-score/main-score.component';
 import { Routes, RouterModule } from "@angular/router";
 import { HttpModule } from '@angular/http';
+import { CatMashService } from './cat-mash.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'vote', pathMatch: 'full' },
@@ -24,7 +25,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes), 
     HttpModule
   ],
-  providers: [],
+  providers: [CatMashService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

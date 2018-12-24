@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CatMashService } from '../cat-mash.service';
 
 @Component({
   selector: 'app-main-vote',
@@ -8,12 +9,25 @@ import { Router } from '@angular/router';
 })
 export class MainVoteComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  cats: any;
+
+  constructor(
+    private router: Router,
+    public catMash: CatMashService
+  ) { }
 
   btnClick= function () {
           this.router.navigateByUrl('/scores');
   };
+
   ngOnInit() {
+    this.getData()
   }
 
+  getData() {
+    this.catMash.getData()
+      .then((res) => {
+        this.cats = res.json().images;
+      })
+    }
 }

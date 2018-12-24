@@ -1,4 +1,13 @@
 <p>
   main-vote works!
 </p>
+
+<h1> Vote for the cutest cats </h1>
+<div>
+  <div *ngFor="let cat of cats">
+    <img [src]="cat.url" />
+    <h3> {{ cat.id }}&nbsp;</h3>
+  </div>
+</div>
+
 <button (click)="btnClick();">See scores</button>
