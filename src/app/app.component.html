@@ -1,6 +1,15 @@
-<app-main-vote (scoresToggleEvent) = "receiveScoresToggle($event)"></app-main-vote>
+<app-main-vote 
+    [cats]="cats"
+    (scoresToggleEvent)="receiveScoresToggle($event)"
+    (catsHashEvent)="receiveCatsHash($event)"
+    (totalVotesEvent)="receiveTotalVotes($event)">
+</app-main-vote>
 <div *ngIf=this.scoresToggle>
- <app-main-score></app-main-score>   
+    <app-main-score 
+        [myCats]="cats"
+        [catVotesHash]="catVotesHash"
+        [totalVotes]="totalVotes">
+    </app-main-score>
 </div>
 
 

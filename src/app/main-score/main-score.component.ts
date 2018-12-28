@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-main-score',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainScoreComponent implements OnInit {
 
+  @Input() myCats: any;
+  @Input() catVotesHash: any;
+  @Input() totalVotes: number;
+  catKeys = Object.keys; 
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.catVotesHash, this.totalVotes)
   }
 
 }

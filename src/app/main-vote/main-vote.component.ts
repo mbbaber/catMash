@@ -1,50 +1,31 @@
-import { Component, OnInit, OnChanges, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { CatMashService } from '../cat-mash.service';
+import { Component, Output, Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-
 
 @Component({
   selector: 'app-main-vote',
   templateUrl: './main-vote.component.html',
   styleUrls: ['./main-vote.component.css']
 })
-export class MainVoteComponent implements OnInit {
+export class MainVoteComponent {
 
-  cats: any[];
   cat1Index: number = 0;
   cat2Index: number = 1;
   totalVotes: number = 0;
   catVotesHash: any = {};
-  catKeys = Object.keys; 
   scoresToggle: boolean = false; 
 
+  @Input() cats: any;
   @Output() scoresToggleEvent = new EventEmitter<boolean>();
+  @Output() catsHashEvent = new EventEmitter<any>();
+  @Output() totalVotesEvent = new EventEmitter<any>(); 
 
-  constructor(
-    private router: Router,
-    public catMash: CatMashService
-  ) { }
+  constructor() { }
 
   btnClick() {
-    //this.router.navigateByUrl('/scores');
-    console.log('wroks')
     this.scoresToggle = !this.scoresToggle; 
     this.scoresToggleEvent.emit(this.scoresToggle);
+    this.totalVotesEvent.emit(this.totalVotes);
   };
-
-  ngOnInit() {
-    this.getData()
-  
-  }
-
-  getData() {
-    this.catMash.getData()
-      .then((res) => {
-        this.cats = res.json().images;
-      })
-
-    }
     
   cat1IsCuter() {
     if (this.cat1Index - 1 === this.cat2Index) {
@@ -59,7 +40,7 @@ export class MainVoteComponent implements OnInit {
     } else {
       this.catVotesHash[this.cat1Index] = 1; 
     }
-  
+    this.catsHashEvent.emit(this.catVotesHash);
   }
 
   cat2IsCuter() {
@@ -75,18 +56,12 @@ export class MainVoteComponent implements OnInit {
     } else {
       this.catVotesHash[this.cat2Index] = 1; 
     }
-  }
-    
-  catIsCuter(catIndex) {
-    if (this.cat1Index - 1 === this.cat2Index) {
-      this.cat2Index = (this.cat2Index + 2) % this.cats.length
-    } else {
-      this.cat2Index = (this.cat2Index + 1) % this.cats.length
-    }
+    this.catsHashEvent.emit(this.catVotesHash);
   }
 
 countTotalVotes() {
   this.totalVotes++;
+  this.totalVotesEvent.emit(this.totalVotes);
 }
 
 }
