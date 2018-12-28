@@ -5,5 +5,12 @@
 
     <img src="{{this.cats[this.cat2Index].url}}" (click)="cat2IsCuter()" />
     <h3> {{ this.cats[this.cat2Index].id }}&nbsp;</h3>
+  
 </div>
-<button (click)="btnClick();">See scores</button>
+<button (click)="btnClick()">See scores</button>
+
+<h1>Total Votes: {{this.totalVotes}}</h1>
+
+<div *ngIf="this.catKeys"> 
+<div *ngFor="let key of catKeys(catVotesHash)">{{cats[key].id + ' : ' + catVotesHash[key]}}</div>
+</div>

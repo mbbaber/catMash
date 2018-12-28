@@ -13,6 +13,13 @@ export class AppComponent {
     public response: Router,
   ){}
 
+  scoresToggle: boolean;
+
+  receiveScoresToggle($event) {
+    this.scoresToggle = $event;
+    console.log(this.scoresToggle);
+  }
+
   ValidationSubmit(){
     this.response.navigateByUrl('');
   }
