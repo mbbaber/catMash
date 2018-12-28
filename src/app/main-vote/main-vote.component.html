@@ -1,13 +1,9 @@
-<p>
-  main-vote works!
-</p>
-
 <h1> Vote for the cutest cats </h1>
-<div>
-  <div *ngFor="let cat of cats">
-    <img [src]="cat.url" />
-    <h3> {{ cat.id }}&nbsp;</h3>
-  </div>
-</div>
+<div *ngIf="this.cats">
+    <img src="{{this.cats[this.cat1Index].url}}" (click)="cat1IsCuter()"/>
+    <h3> {{ this.cats[this.cat1Index].id }}&nbsp;</h3>
 
+    <img src="{{this.cats[this.cat2Index].url}}" (click)="cat2IsCuter()" />
+    <h3> {{ this.cats[this.cat2Index].id }}&nbsp;</h3>
+</div>
 <button (click)="btnClick();">See scores</button>

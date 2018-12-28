@@ -9,7 +9,9 @@ import { CatMashService } from '../cat-mash.service';
 })
 export class MainVoteComponent implements OnInit {
 
-  cats: any;
+  cats: any[];
+  cat1Index: number = 0;
+  cat2Index: number = 1;
 
   constructor(
     private router: Router,
@@ -17,7 +19,7 @@ export class MainVoteComponent implements OnInit {
   ) { }
 
   btnClick= function () {
-          this.router.navigateByUrl('/scores');
+    this.router.navigateByUrl('/scores');
   };
 
   ngOnInit() {
@@ -30,4 +32,29 @@ export class MainVoteComponent implements OnInit {
         this.cats = res.json().images;
       })
     }
+
+  cat1IsCuter() {
+    if (this.cat1Index - 1 === this.cat2Index) {
+      this.cat2Index = (this.cat2Index + 2) % this.cats.length
+    } else {
+      this.cat2Index = (this.cat2Index + 1) % this.cats.length
+    }
+  }
+
+  cat2IsCuter() {
+    if (this.cat1Index === this.cat2Index - 1 ) {
+      this.cat1Index = this.cat1Index + 2;
+    } else {
+      this.cat1Index++
+    }
+  }
+    
+  catIsCuter(catIndex) {
+    if (this.cat1Index - 1 === this.cat2Index) {
+      this.cat2Index = (this.cat2Index + 2) % this.cats.length
+    } else {
+      this.cat2Index = (this.cat2Index + 1) % this.cats.length
+    }
+  }
+
 }
