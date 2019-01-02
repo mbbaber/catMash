@@ -10,11 +10,14 @@ export class MainVoteComponent {
 
   cat1Index: number = 0;
   cat2Index: number = 1;
+
   totalVotes: number = 0;
   catVotesHash: any = {};
   scoresToggle: boolean = false; 
+  numberOfDifferentCats: number = 0;
 
   @Input() cats: any;
+  @Input() lowerPlaceCats: any;
   @Output() scoresToggleEvent = new EventEmitter<boolean>();
   @Output() catsHashEvent = new EventEmitter<any>();
   @Output() totalVotesEvent = new EventEmitter<any>(); 
@@ -26,42 +29,38 @@ export class MainVoteComponent {
     this.scoresToggleEvent.emit(this.scoresToggle);
     this.totalVotesEvent.emit(this.totalVotes);
   };
-    
-  cat1IsCuter() {
-    if (this.cat1Index - 1 === this.cat2Index) {
-      this.cat2Index = (this.cat2Index + 2) % this.cats.length
-    } else {
-      this.cat2Index = (this.cat2Index + 1) % this.cats.length
+
+  getDifferentRandomCatIndex() {
+    var newIndex = Math.round(Math.random() * this.cats.length);
+    if (newIndex == this.cat1Index || newIndex == this.cat2Index) {
+      newIndex = this.getDifferentRandomCatIndex() 
     }
+    return newIndex
+  }
+
+  voteForCat(idx: number) {
+    if (this.cat1Index == idx) {
+      this.cat2Index = this.getDifferentRandomCatIndex();
+    } else {
+      this.cat1Index = this.getDifferentRandomCatIndex();
+    }
+
     this.countTotalVotes();
 
-    if (this.catVotesHash.hasOwnProperty(this.cat1Index)) {
-      this.catVotesHash[this.cat1Index] = this.catVotesHash[this.cat1Index] +1; 
+    if (this.catVotesHash.hasOwnProperty(idx)) {
+      this.catVotesHash[idx] = this.catVotesHash[idx] + 1; 
     } else {
-      this.catVotesHash[this.cat1Index] = 1; 
+      this.catVotesHash[idx] = 1; 
     }
+
+    this.numberOfDifferentCats = Object.keys(this.catVotesHash).length
+
     this.catsHashEvent.emit(this.catVotesHash);
   }
 
-  cat2IsCuter() {
-    if (this.cat1Index === this.cat2Index - 1 ) {
-      this.cat1Index = (this.cat1Index + 2) % this.cats.length
-    } else {
-      this.cat1Index = (this.cat1Index + 1) % this.cats.length
-    }
-    this.countTotalVotes()
-
-    if (this.catVotesHash.hasOwnProperty(this.cat2Index)) {
-      this.catVotesHash[this.cat2Index] = this.catVotesHash[this.cat2Index] +1; 
-    } else {
-      this.catVotesHash[this.cat2Index] = 1; 
-    }
-    this.catsHashEvent.emit(this.catVotesHash);
+  countTotalVotes() {
+    this.totalVotes++;
+    this.totalVotesEvent.emit(this.totalVotes);
   }
-
-countTotalVotes() {
-  this.totalVotes++;
-  this.totalVotesEvent.emit(this.totalVotes);
-}
 
 }

@@ -19,9 +19,14 @@ export class AppComponent implements OnInit {
   scoresToggle: boolean;
   catVotesHash: any;
   totalVotes: number;
+  lowerPlaceCats: any;
 
   ngOnInit() {
     this.getData()
+  }
+
+  toggleModal() {
+    this.scoresToggle = !this.scoresToggle;
   }
 
   getData() {
@@ -29,22 +34,22 @@ export class AppComponent implements OnInit {
       .then((res) => {
         this.cats = res.json().images;
       })
-      console.log(this.cats)
     }
 
   receiveScoresToggle($event) {
     this.scoresToggle = $event;
-    console.log(this.scoresToggle);
   }
 
   receiveCatsHash($event) {
     this.catVotesHash = $event;
-    console.log(this.catVotesHash);
   }
 
   receiveTotalVotes($event) {
     this.totalVotes = $event;
-    console.log(this.totalVotes);
+  }
+
+  receiveLowerPlaceCats($event) {
+    this.lowerPlaceCats = $event;
   }
 
   ValidationSubmit(){

@@ -1,10 +1,17 @@
-<p>
-  SCORES COMPONENT!!!!!
-  -----------------------
-</p>
-
-<h1>Total Votes: {{this.totalVotes}}</h1>
-
-<div *ngIf="this.catKeys && this.myCats">
-<div *ngFor="let key of catKeys(catVotesHash)">{{myCats[key].id + ' : ' + catVotesHash[key]}}</div>
+<div *ngIf="firstCat && secondCat && thirdCat">
+  <img class="big-image" src="{{ allCats[firstCat[0]].url }}">
+  <h2>WINNER: {{ allCats[firstCat[0]].id }}!</h2>
+  <div class="columns">
+    <div class="column is-half" style="display:table-cell; vertical-align:middle; text-align:center">
+      <img class="small-image" src="{{ allCats[secondCat[0]].url }}">
+      <h3>2nd place: {{ allCats[secondCat[0]].id }}!</h3>
+    </div>
+    <div class="column" style="display:table-cell; vertical-align:middle; text-align:center">
+      <img class="small-image" src="{{ allCats[thirdCat[0]].url }}">
+      <h3>3rd place: {{ allCats[thirdCat[0]].id }}!</h3>
+    </div>
+  </div>
+  <div style="text-align:left" *ngFor="let cat of lowerPlaceCats; index as i">
+    #{{i+4}}: {{ allCats[cat[0]].id }}
+  </div>
 </div>

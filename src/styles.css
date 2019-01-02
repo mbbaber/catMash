@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  font-family: sans-serif;
+  background-color: white;
+  background-size: 100vw, 100vh;
+  background-position: cover;
+  background-repeat: no-repeat;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+header,
+footer {
+  width: 100vw;
+  height: 60px;
+  position: fixed;
+  padding: 15px 30px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  z-index:1; 
+}
+
+header {
+  justify-content: space-between;
+  top: 0;
+  background-color: hotpink;
+}
+
+header h2 a:hover {
+  color: turquoise;
+}
+
+header h2 {
+  margin-right: 15px;
+  color: white;
+}
+
+footer {
+  justify-content: center;
+  background-color: hotpink;
+  bottom: 0;
+}
+
+footer,
+nav strong {
+  color: white;
+}
+
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: turquoise;
+}
+
+footer p a:hover {
+  color: turquoise;
+}
+.container {
+  margin-top: 20vh;
+  width: 90%;
+  margin: 12vh auto auto auto;
+}
+img {
+  border-radius: 50%;  
+}

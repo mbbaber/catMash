@@ -1,15 +1,20 @@
-<app-main-vote 
-    [cats]="cats"
-    (scoresToggleEvent)="receiveScoresToggle($event)"
-    (catsHashEvent)="receiveCatsHash($event)"
-    (totalVotesEvent)="receiveTotalVotes($event)">
+<app-main-vote [cats]="cats" (scoresToggleEvent)="receiveScoresToggle($event)" (catsHashEvent)="receiveCatsHash($event)"
+  (totalVotesEvent)="receiveTotalVotes($event)">
 </app-main-vote>
 <div *ngIf=this.scoresToggle>
-    <app-main-score 
-        [myCats]="cats"
-        [catVotesHash]="catVotesHash"
-        [totalVotes]="totalVotes">
-    </app-main-score>
-</div>
-
-
+  <div class="modal" [ngClass]="{ 'is-active' : this.scoresToggle }">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">High Scores of {{ this.totalVotes }} Votes</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <app-main-score [allCats]="cats" [catVotesHash]="catVotesHash" [totalVotes]="totalVotes">
+        </app-main-score>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button" (click)="toggleModal()">Close</button>
+      </footer>
+    </div>
+  </div>
