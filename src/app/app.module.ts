@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { MainVoteComponent } from './main-vote/main-vote.component';
 import { MainScoreComponent } from './main-score/main-score.component';
 import { Routes, RouterModule } from "@angular/router";
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from "@angular/common/http";
 import { CatMashService } from './cat-mash.service';
 
 const routes: Routes = [
@@ -23,7 +23,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes), 
-    HttpModule
+    HttpClientModule
   ],
   providers: [CatMashService],
   bootstrap: [AppComponent]

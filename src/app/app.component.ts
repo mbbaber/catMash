@@ -31,8 +31,8 @@ export class AppComponent implements OnInit {
 
   getData() {
     this.catMash.getData()
-      .then((res) => {
-        this.cats = res.json().images;
+    .subscribe((res : any) => {
+      this.cats = res.images;
       })
     }
 
