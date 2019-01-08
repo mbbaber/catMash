@@ -7,6 +7,7 @@ import { MainScoreComponent } from './main-score/main-score.component';
 import { Routes, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { CatMashService } from './cat-mash.service';
+import { AllScoreComponent } from './all-score/all-score.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'vote', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MainVoteComponent,
-    MainScoreComponent
+    MainScoreComponent,
+    AllScoreComponent
   ],
   imports: [
     BrowserModule,

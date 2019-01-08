@@ -2,16 +2,15 @@
     <div class="columns">
         <div class="column is-third" style="display:table-cell; vertical-align:middle; text-align:center">
             <img src="{{this.cats[this.cat1Index].url}}" (click)="voteForCat(this.cat1Index)" />
-            <h3> {{ this.cats[this.cat1Index].id }}&nbsp;</h3>
         </div>
         <div class="column is-third">
             <h1 class="text"> Which Cat is Cuter? </h1>
         </div>
         <div class="column is-third" style="display:table-cell; vertical-align:middle; text-align:center">
             <img src="{{this.cats[this.cat2Index].url}}" (click)="voteForCat(this.cat2Index)" />
-            <h3> {{ this.cats[this.cat2Index].id }}&nbsp;</h3>
+            <!-- <h3> {{ this.cats[this.cat2Index].id }}&nbsp;</h3> -->
         </div>
     </div>
-    <a *ngIf="numberOfDifferentCats < 4" class="button" title="Disabled button" disabled>See Scores</a>
-    <a *ngIf="numberOfDifferentCats >= 4" class="button" (click)="btnClick()">See Scores</a>
+    <a class="button" (click)="allScoresClick()">All Scores</a>
+    <a class="button" (click)="highScoresClick()">Champions</a>
 </div>

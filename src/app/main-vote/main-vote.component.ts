@@ -13,20 +13,28 @@ export class MainVoteComponent {
 
   totalVotes: number = 0;
   catVotesHash: any = {};
-  scoresToggle: boolean = false; 
+  highScoresToggle: boolean = false;
+  allScoresToggle: boolean = false;  
   numberOfDifferentCats: number = 0;
 
   @Input() cats: any;
-  @Input() lowerPlaceCats: any;
-  @Output() scoresToggleEvent = new EventEmitter<boolean>();
+  @Input() sortedCats: any;
+  @Output() highScoresToggleEvent = new EventEmitter<boolean>();
+  @Output() allScoresToggleEvent = new EventEmitter<boolean>();
   @Output() catsHashEvent = new EventEmitter<any>();
   @Output() totalVotesEvent = new EventEmitter<any>(); 
 
   constructor() { }
 
-  btnClick() {
-    this.scoresToggle = !this.scoresToggle; 
-    this.scoresToggleEvent.emit(this.scoresToggle);
+  highScoresClick() {
+    this.highScoresToggle = !this.highScoresToggle; 
+    this.highScoresToggleEvent.emit(this.highScoresToggle);
+    this.totalVotesEvent.emit(this.totalVotes);
+  };
+
+  allScoresClick() {
+    this.allScoresToggle = !this.allScoresToggle; 
+    this.allScoresToggleEvent.emit(this.allScoresToggle);
     this.totalVotesEvent.emit(this.totalVotes);
   };
 
@@ -56,6 +64,12 @@ export class MainVoteComponent {
     this.numberOfDifferentCats = Object.keys(this.catVotesHash).length
 
     this.catsHashEvent.emit(this.catVotesHash);
+
+    if (this.cat1Index == idx) {
+      this.cat1Index = this.getDifferentRandomCatIndex();
+    } else {
+      this.cat2Index = this.getDifferentRandomCatIndex();
+    }
   }
 
   countTotalVotes() {

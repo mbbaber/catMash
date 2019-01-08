@@ -1,8 +1,12 @@
-<app-main-vote [cats]="cats" (scoresToggleEvent)="receiveScoresToggle($event)" (catsHashEvent)="receiveCatsHash($event)"
+<app-main-vote 
+  [cats]="cats" 
+  (highScoresToggleEvent)="receiveHighScoresToggle($event)"
+  (allScoresToggleEvent)="receiveAllScoresToggle($event)"
+  (catsHashEvent)="receiveCatsHash($event)"
   (totalVotesEvent)="receiveTotalVotes($event)">
 </app-main-vote>
-<div *ngIf=this.scoresToggle>
-  <div class="modal" [ngClass]="{ 'is-active' : this.scoresToggle }">
+<div *ngIf=this.highScoresToggle>
+  <div class="modal" [ngClass]="{ 'is-active' : this.highScoresToggle }">
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
@@ -14,7 +18,27 @@
         </app-main-score>
       </section>
       <footer class="modal-card-foot">
-        <button class="button" (click)="toggleModal()">Close</button>
+        <button class="button" (click)="toggleHighScoresModal()">Close</button>
       </footer>
     </div>
   </div>
+  </div>
+
+  <div *ngIf=this.allScoresToggle>
+      <div class="modal" [ngClass]="{ 'is-active' : this.allScoresToggle }">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">All Scores of {{ this.totalVotes }} Votes</p>
+            <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <app-all-score [allCats]="cats" [catVotesHash]="catVotesHash" [totalVotes]="totalVotes">
+            </app-all-score>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button" (click)="toggleAllScoresModal()">Close</button>
+          </footer>
+        </div>
+      </div>
+      </div>

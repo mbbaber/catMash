@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { SortService } from '../sort.service';
 
 @Component({
   selector: 'app-main-score',
@@ -12,33 +13,24 @@ export class MainScoreComponent implements OnChanges {
   @Input() catVotesHash: any;
   @Input() totalVotes: number;
   catKeys = Object.keys; 
-  lowerPlaceCats: any;
+  sortedCats: any;
   firstCat: any;
   secondCat: any; 
   thirdCat: any; 
 
-  constructor() { }
-
-  ngOnChanges() {
-    let sortedCats = this.sortObject(this.catVotesHash);
-
-    if (sortedCats.length >= 3) {
-      this.lowerPlaceCats = sortedCats.slice(4, sortedCats.length);
-      this.firstCat = sortedCats[0];
-      this.secondCat = sortedCats[1];
-      this.thirdCat = sortedCats[2];
-    }
+  constructor(
+    sortService: SortService
+  ) { 
+    this.sortedCats = sortService.sortObject(this.catVotesHash);
   }
 
-  sortObject(object) {
-    var sortedArray = [];
-    for (var key in object) {
-      sortedArray.push([parseInt(key), object[key]]);
+  ngOnChanges() {
+    //this.sortedCats = this.sortService.sortObject(this.catVotesHash);
+    if (this.sortedCats.length >= 3) {
+      this.firstCat = this.sortedCats[0];
+      this.secondCat = this.sortedCats[1];
+      this.thirdCat = this.sortedCats[2];
     }
-    sortedArray.sort(function(a, b) {
-      return b[1] - a[1];
-    });
-    return sortedArray;
   }
 }
 

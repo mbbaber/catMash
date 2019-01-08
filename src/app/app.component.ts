@@ -16,17 +16,22 @@ export class AppComponent implements OnInit {
   ){}
 
   cats: any;
-  scoresToggle: boolean;
+  highScoresToggle: boolean;
+  allScoresToggle: boolean;
   catVotesHash: any;
   totalVotes: number;
-  lowerPlaceCats: any;
+  sortedCats: any;
 
   ngOnInit() {
     this.getData()
   }
 
-  toggleModal() {
-    this.scoresToggle = !this.scoresToggle;
+  toggleHighScoresModal() {
+    this.highScoresToggle = !this.highScoresToggle;
+  }
+
+  toggleAllScoresModal() {
+    this.allScoresToggle = !this.allScoresToggle;
   }
 
   getData() {
@@ -36,8 +41,12 @@ export class AppComponent implements OnInit {
       })
     }
 
-  receiveScoresToggle($event) {
-    this.scoresToggle = $event;
+  receiveHighScoresToggle($event) {
+    this.highScoresToggle = $event;
+  }
+
+  receiveAllScoresToggle($event) {
+    this.allScoresToggle = $event;
   }
 
   receiveCatsHash($event) {
@@ -48,8 +57,8 @@ export class AppComponent implements OnInit {
     this.totalVotes = $event;
   }
 
-  receiveLowerPlaceCats($event) {
-    this.lowerPlaceCats = $event;
+  receiveSortedCats($event) {
+    this.sortedCats = $event;
   }
 
   ValidationSubmit(){

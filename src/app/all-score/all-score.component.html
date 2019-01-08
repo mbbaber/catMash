@@ -1,0 +1,27 @@
+<div *ngIf="sortedCats.length === 0">
+    <h3>No cats have points. Go vote!</h3>
+  </div>
+  <div *ngIf="sortedCats.length > 0">
+  <div class="columns">
+    <div class="column is-one-third">
+      <h3>Place</h3>
+    </div>
+    <div class="column is-one-third">
+      <h3>Cat</h3>
+    </div>
+    <div class="column is-one-third">
+      <h3>Votes</h3>
+    </div>
+  </div>
+  <div class="columns" *ngFor="let cat of sortedCats; index as i">
+      <div class="column is-one-third">
+        <h3>#{{i+1}}</h3>
+      </div>
+      <div class="column is-one-third">
+        <img class="tiny-image" src="{{ allCats[cat[0]].url }}">
+      </div>
+      <div class="column is-one-third">
+        <h3>{{ cat[1] }}</h3>
+      </div>
+  </div>
+  </div>
