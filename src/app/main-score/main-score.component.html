@@ -1,19 +1,90 @@
-<div *ngIf="!thirdCat">
+<div *ngIf="!fourthCat">
   <h3>Not enough votes to crown the winners</h3>
 </div>
-
-<div *ngIf="firstCat && secondCat && thirdCat">
-  <img class="big-image" src="{{ allCats[firstCat[0]].url }}">
-  <h2>WINNER: {{ allCats[firstCat[0]].id }}!</h2>
-  <div class="columns">
-    <div class="column is-half" style="display:table-cell; vertical-align:middle; text-align:center">
-      <img class="small-image" src="{{ allCats[secondCat[0]].url }}">
-      <h3>2nd place: {{ allCats[secondCat[0]].id }}!</h3>
-    </div>
-    <div class="column" style="display:table-cell; vertical-align:middle; text-align:center">
-      <img class="small-image" src="{{ allCats[thirdCat[0]].url }}">
-      <h3>3rd place: {{ allCats[thirdCat[0]].id }}!</h3>
+<div *ngIf="fourthCat">
+  <div *ngIf="areOneAndTwoEqual && areTwoAndThreeEqual">
+    <h3>3-way tie. Please keep voting</h3>
+  </div>
+  <div *ngIf="!areOneAndTwoEqual && areTwoAndThreeEqual && areThreeAndFourEqual">
+    <h2>First place:</h2>
+    <img class="big-image" src="{{ allCats[firstCat[0]].url }}">
+    <h2>Second and Third places: Too many ties. Keep voting!</h2>
+  </div>
+  <div *ngIf="!areOneAndTwoEqual && areTwoAndThreeEqual && !areThreeAndFourEqual">
+    <h2>First place:</h2>
+    <img class="big-image" src="{{ allCats[firstCat[0]].url }}">
+    <h2>Second place:</h2>
+    <div class="columns">
+      <div class="column is-one-third">
+        <img class="big-image" src="{{ allCats[secondCat[0]].url }}">
+      </div>
+      <div class="column is-one-third">
+        <h2>AND</h2>
+      </div>
+      <div class="column is-one-third">
+        <img class="big-image" src="{{ allCats[thirdCat[0]].url }}">
       </div>
     </div>
   </div>
-  
+  <div *ngIf="areOneAndTwoEqual && !areTwoAndThreeEqual && areThreeAndFourEqual">
+    <h2>First place:</h2>
+    <div class="columns">
+      <div class="column is-one-third">
+        <img class="big-image" src="{{ allCats[firstCat[0]].url }}">
+      </div>
+      <div class="column is-one-third">
+        <h2>AND</h2>
+      </div>
+      <div class="column is-one-third">
+        <img class="big-image" src="{{ allCats[secondCat[0]].url }}">
+      </div>
+    </div>
+    <h2>Second place:</h2>
+    <img class="big-image" src="{{ allCats[thirdCat[0]].url }}">
+    <h2>Third place: Too many ties. Keep voting!</h2>
+  </div>
+  <div *ngIf="areOneAndTwoEqual && !areTwoAndThreeEqual && !areThreeAndFourEqual">
+    <h2>First place:</h2>
+    <div class="columns">
+      <div class="column is-one-third">
+        <img class="big-image" src="{{ allCats[firstCat[0]].url }}">
+      </div>
+      <div class="column is-one-third">
+        <h2>AND</h2>
+      </div>
+      <div class="column is-one-third">
+        <img class="big-image" src="{{ allCats[secondCat[0]].url }}">
+      </div>
+    </div>
+    <h2>Second place:</h2>
+    <img class="big-image" src="{{ allCats[thirdCat[0]].url }}">
+    <h2>Third place:</h2>
+    <img class="big-image" src="{{ allCats[fourthCat[0]].url }}">
+  </div>
+  <div *ngIf="!areOneAndTwoEqual && !areTwoAndThreeEqual && !areThreeAndFourEqual">
+    <h2>First place:</h2>
+    <img class="big-image" src="{{ allCats[firstCat[0]].url }}">
+    <h2>Second place:</h2>
+    <img class="big-image" src="{{ allCats[secondCat[0]].url }}">
+    <h2>Third place:</h2>
+    <img class="big-image" src="{{ allCats[thirdCat[0]].url }}">
+  </div>
+  <div *ngIf="!areOneAndTwoEqual && !areTwoAndThreeEqual && areThreeAndFourEqual">
+    <h2>First place:</h2>
+    <img class="big-image" src="{{ allCats[firstCat[0]].url }}">
+    <h2>Second place:</h2>
+    <img class="big-image" src="{{ allCats[secondCat[0]].url }}">
+    <h2>Third place:</h2>
+    <div class="columns">
+      <div class="column is-one-third">
+        <img class="big-image" src="{{ allCats[thirdCat[0]].url }}">
+      </div>
+      <div class="column is-one-third">
+        <h2>AND</h2>
+      </div>
+      <div class="column is-one-third">
+        <img class="big-image" src="{{ allCats[fourthCat[0]].url }}">
+      </div>
+    </div>
+  </div>
+</div>
